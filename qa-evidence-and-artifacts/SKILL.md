@@ -2,7 +2,7 @@
 name: qa-evidence-and-artifacts
 description: "Evidence discipline for testing and investigation: role boundaries, evidence priority, failure classification, coverage traceability, artifact placement, and source-document retention. Use when confirming an issue, assigning ownership, writing a repro/ticket package, or auditing test evidence. Trigger: 证据 / 提单 / 责任端 / 覆盖矩阵 / 产物落盘 / 源文档留存 / 缺陷闭环 / QA 边界."
 agent_created: true
-version: 2
+version: 1.0
 category: qa
 platforms: [agent-agnostic]
 dependencies: "none (documentation only)"

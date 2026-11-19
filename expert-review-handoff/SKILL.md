@@ -2,7 +2,7 @@
 name: expert-review-handoff
 description: "Independent Expert review for a newly produced work-related skill: builds a leak-free handoff brief, verifies the release gates, and adjudicates returned findings. This skill should be used when a work-related skill has been produced and must be reviewed, or when the release gates of this skill are being checked. It does not decide whether a review is needed and is not a general task router."
 agent_created: true
-version: 2
+version: 1.0
 category: methodology
 platforms: [agent-agnostic]
 ---

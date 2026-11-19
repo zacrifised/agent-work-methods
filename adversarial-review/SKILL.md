@@ -2,7 +2,7 @@
 name: adversarial-review
 description: "Independent adversarial review of conclusions, plans, and deliverables through an information-isolated second party. This skill should be used when a judgment is about to be delivered, a plan needs challenge, or a draft needs blind proofreading, and no deterministic verification is available. Trigger: 复核一下 / 帮我挑刺 / 压力测试这个方案."
 agent_created: true
-version: 2
+version: 1.0
 category: methodology
 platforms: [agent-agnostic]
 dependencies: "python>=3.9 (stdlib only)"

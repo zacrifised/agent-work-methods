@@ -2,7 +2,7 @@
 name: change-verification
 description: "Low-cost verification after any change to code, configuration, scripts, skills, or documents. This skill should be used when work is done or files have been modified, to establish whether the change took effect and whether existing behavior was preserved; it defines Q1/Q2 criteria, baselines, verification tiers, and detector self-checks. Trigger: 改完了 / 要不要检查一下 / 会不会弄坏别的."
 agent_created: true
-version: 2
+version: 1.0
 category: methodology
 platforms: [agent-agnostic]
 dependencies: "python>=3.9 (stdlib only)"
