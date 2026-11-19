@@ -2,7 +2,7 @@
 name: test-case-authoring
 description: "Author, revise, or restructure test case assets from requirement documents (PRD, design, review notes, prototypes, meeting notes). Use when building a new case suite, adding boundary or regression cases, syncing Markdown sources with derived YAML, or maintaining coverage matrices. Trigger: 写用例 / 补边界 case / 测试点分析 / 覆盖矩阵 / 用例改写."
 agent_created: true
-version: 1.0
+version: 1.1
 category: qa
 platforms: [agent-agnostic]
 dependencies: "python>=3.9 (stdlib only)"
