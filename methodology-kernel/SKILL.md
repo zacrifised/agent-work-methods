@@ -147,7 +147,6 @@ dependencies: "none (documentation only)"
 | `references/conclude.md` | P8–P13 结论原则 + 候选关系表 | 写结论 / 判排他 |
 | `references/closure.md` | P16–P18 结案原则 | 判断还追不追 / 何时停 |
 | `references/evolve.md` | P14–P15 + 五闸门 | 升格规则 / 撤回说法 |
-| `references/retracted.md` | 已撤回说法台账（按 P15 保留原始表述与日期） | 遇到旧说法疑似复活 / 判「是否已被证伪」 |
 
 ## 反例
 
