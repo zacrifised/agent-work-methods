@@ -7,7 +7,7 @@
 
 ## 怎么装
 
-把本仓库中你需要的某个目录（如 `evidence-discipline-v2/`）放到你所用 agent 的 skill 目录。
+把本仓库中你需要的某个目录（如 `evidence-discipline/`）放到你所用 agent 的 skill 目录。
 不同 agent 的目录位置不同，按其文档操作；本仓库不依赖任何特定产品。
 
 纯文档类 skill（无 `scripts/` 目录）不需要安装依赖。
@@ -17,13 +17,13 @@
 
 | 你想做的事 | 目录 |
 |---|---|
-| 对结论 / 方案做独立挑刺复核 | `adversarial-review-v2/` |
-| 改完东西后低成本验证是否生效、有没有破坏 | `change-verification-v2/` |
-| 给结论分级、先读后断、判断何时停止追查 | `evidence-discipline-v2/` |
-| 统一口径、按原则做判断、把经验沉淀成规则 | `methodology-kernel-v2/` |
-| 测试中的证据、边界、提单、产物与缺陷闭环 | `qa-evidence-and-artifacts-v2/` |
-| 设计测试策略、分层、CI 门禁与稀缺资源使用 | `test-strategy-design-v2/` |
-| 从截图提取中文文本并保障准确率 | `screenshot-ocr-v2/` |
+| 对结论 / 方案做独立挑刺复核 | `adversarial-review/` |
+| 改完东西后低成本验证是否生效、有没有破坏 | `change-verification/` |
+| 给结论分级、先读后断、判断何时停止追查 | `evidence-discipline/` |
+| 统一口径、按原则做判断、把经验沉淀成规则 | `methodology-kernel/` |
+| 测试中的证据、边界、提单、产物与缺陷闭环 | `qa-evidence-and-artifacts/` |
+| 设计测试策略、分层、CI 门禁与稀缺资源使用 | `test-strategy-design/` |
+| 从截图提取中文文本并保障准确率 | `screenshot-ocr/` |
 
 每个目录内：
 
@@ -35,7 +35,7 @@
 
 ## 最小例子
 
-以 `change-verification-v2` 为例：改完一个配置文件后，不直接说「改好了」，
+以 `change-verification` 为例：改完一个配置文件后，不直接说「改好了」，
 而是按顺序回答两问——改动有没有正向观测证明生效、有没有回归证明没破坏别的东西。
 无基线时如实写「未覆盖」，不假装验证过。
 

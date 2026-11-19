@@ -1,5 +1,5 @@
 ---
-name: test-strategy-design-v2
+name: test-strategy-design
 description: "Design, adjust, or review test strategies: L0/L1/L1P/L2/L3 layering, CI/CD boundaries, scarce-resource gates, simulator vs real-device lines, and QA-to-dev E2E reflow. Use for QA leads and managers defining a quality plan, including AI-generated code and fixed-deadline projects. Trigger: 测试策略 / 分层 / L1 / CI 门禁 / 真机边界 / 分层方案 / 质量目标."
 agent_created: true
 version: 2

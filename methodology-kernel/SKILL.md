@@ -1,5 +1,5 @@
 ---
-name: methodology-kernel-v2
+name: methodology-kernel
 description: "Single source of truth for cross-domain methodology principles: observation, experiment, conclusion, closure, and evolution. Use when two skills' rules appear to conflict, when writing a conclusion, judging evidence direction, promoting an experience into a rule, retracting a claim, or deciding whether to keep investigating. Trigger: 口径冲突 / 单一真源 / 原则 / 方向不对称 / 排他 / 代理指标 / n=1 / 沉淀规则 / 撤回 / 自进化 / 结案 / 止损 / 证明标准 / 什么时候停."
 agent_created: true
 version: 2

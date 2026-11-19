@@ -1,5 +1,5 @@
 ---
-name: screenshot-ocr-v2
+name: screenshot-ocr
 description: "Chinese OCR with measurable accuracy guarantees for screenshots and scans. Use when OCR output feeds downstream work, when accuracy must be quantified, or for low-tolerance documents (PRD, contracts, acceptance criteria, test cases). Covers model selection, heterogeneous-engine disagreement triage, glyph reconfirmation, and blind semantic proofreading. Trigger: CER / OCR 选型 / 截图文字提取 / OCR 错别字校对 / 准确率评估."
 agent_created: true
 version: 2

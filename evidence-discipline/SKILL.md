@@ -1,5 +1,5 @@
 ---
-name: evidence-discipline-v2
+name: evidence-discipline
 description: "Executable checklist for conclusion grading and evidence-first reasoning. Use for non-trivial diagnosis, root-cause analysis, technical judgment, data interpretation, and decisions about whether to continue investigating or close. Trigger: 排查 / 根因 / 结论 / 判断 / 评估 / 是不是有问题 / 要不要换 / 数据分析 / 验证 / 结案 / 止损 / 不用追了."
 agent_created: true
 version: 2
