@@ -1,13 +1,20 @@
 ---
-name: expert-review-handoff
-description: "Independent Expert review for a newly produced work-related skill: builds a leak-free handoff brief, verifies the release gates, and adjudicates returned findings. This skill should be used when a work-related skill has been produced and must be reviewed, or when the release gates of this skill are being checked. It does not decide whether a review is needed and is not a general task router."
+name: skill-quality-contract
+description: "Quality gate for a newly produced skill: both S1-S5 criteria and G1-G9 toolchain checks must pass for release, with an optional leak-free brief for independent expert review. This skill should be used when a skill has been authored and its quality must be checked; expert review is a separate decision made by the user. Does not decide whether to seek review and is not a general task router."
 agent_created: true
-version: 1.0
+version: 2
 category: methodology
-platforms: [agent-agnostic]
+platforms: [workbuddy]
 ---
 
-# 产出 Skill 的专家评审
+# Skill 质量契约
+
+## 定位
+
+与 `skill-authoring-contract`（管「怎么写到格式合规」）互补：本契约管「**写得到不到放行标准**」。
+类比：authoring = 开发写业务代码；本契约 = 开发自测；专家独立评审 = 送测试。
+**职责边界**：本契约不判断、不发起、不承接专家评审——送不送由用户决定。
+审核通过即本流程结束；用户送审且未通过时，回到本契约重跑至通过。
 
 ## 运行环境（本机限定）
 
@@ -17,20 +24,21 @@ platforms: [agent-agnostic]
 
 ## 范围
 
-覆盖：一个**工作相关** skill 产出后，对它做一次独立专家评审。
+覆盖：任何已落盘的 skill 产出后，按 S1–S5 判据做质量门禁；
+需要第三方独立视角时，附带生成 leak-free 评审交接材料包。
 
 不覆盖：
+- 判断「要不要送专家评审」——这是用户的事，本契约只判断质量是否达标
 - 用产出的 skill 再生成下游产物（test case、排查结论、报告等）
-- 非工作 skill（可参考，不强制）
-- 判断「要不要评审」—— 调用本 skill 即表示评审已开始
 - 尚未落盘、磁盘上没有文件的方案
 
-「工作相关」判定见 `references/scenario-routing.md` §1。
+工作相关 skill 的送审场景见 `references/scenario-routing.md` §1；非工作 skill 同样可跑质量门禁，
+只是不强制走交接材料包。
 
 ## 放行
 
-放行按 `references/release-gates.md` 的 **S1–S5 判据清单**；
-**G1–G9 仅为交接工具链自检，不作放行依据**。
+放行按 `references/release-gates.md`：**S1–S5 全部 PASS 且 G1–G9 无 FAIL** 才放行，
+两组不互相替代。
 判定规则、故障推翻要求、交付前动作全部以该文件为准，本文件不重复。
 改本 skill 任一文件后跑 `python scripts/verify_gates.py`；
 独立执行方另跑 `python scripts/fault_injection_suite.py`，按 `EVIDENCE_JSON` 复算，
@@ -38,14 +46,16 @@ platforms: [agent-agnostic]
 
 ## WHEN → THEN
 
-**WHEN**：一个工作相关 skill 已产出，需要专家评审。
+**WHEN**：一个 skill 已产出并落盘，需要判断质量是否达标（送专家评审前必须先过这一关）。
 
 **产出方**
-1. 跑 `scripts/verify_gates.py`，全过才继续。
-2. 跑 `scripts/build_handoff.py --root <新 skill 目录> --apply` 生成材料包（默认 dry-run）。
-3. 给用户一句话交接指令 + 专家角色类型建议，不要求复制 prompt。
-4. 专家结论回来后按 `scenario-routing.md` §4 裁决回流：标二级输入、只裁分歧、给选项与出处。
-5. 未召唤如实写「已提醒召唤，专家审未执行」。
+1. 跑 `scripts/verify_gates.py` 核 S1–S5 放行判据；不过则修 skill 后重跑，不进入下一步。
+2. 质量门禁通过后，本契约的职责即结束——向用户报告结果，不判断、不发起专家评审。
+3. 用户决定送专家评审时，才跑 `scripts/build_handoff.py --root <新 skill 目录> --apply`
+   生成材料包（默认 dry-run），给一句话交接指令 + 专家角色建议，不要求复制 prompt。
+4. 用户决定不送时，如实写「质量门禁通过，未送专家评审（用户决定）」，流程结束。
+5. 专家结论回来后按 `scenario-routing.md` §4 裁决回流：标二级输入、只裁分歧、给选项与出处。
+   未通过则回到第 1 步重跑，直到用户确认通过。
 
 **审核方**
 1. 读 `assets/reviewer-prompt.md`（prompt 唯一真源，无需复制）。
@@ -68,7 +78,8 @@ platforms: [agent-agnostic]
 1. 单场景；不扩成通用任务路由，不引入多种审核模式。
 2. 答案清单优先：材料包与 prompt 不含结论 / 裁决 / 改动清单 / 处置状态。
 3. 审核方是无上下文新会话（会话选择见 `references/expert-mechanism.md`）。
-4. S1–S5 全过且 G1–G9 无 FAIL 才放行；分数只诊断。
+4. **放行真源在 `references/release-gates.md`**：S1–S5 全部 PASS 且 G1–G9 无 FAIL。
+   任一项不过则修 skill 后重跑，不进入送审环节。
 5. 一条信息只在一处：`release-gates.md` 是门禁真源，`assets/reviewer-prompt.md` 是 prompt 真源。
 6. 脚本参数化，默认 dry-run；新增泄漏 / 占位符缺失默认阻断落盘。
 7. 交付物对真人和机器 / agent 都高可读：结构化字段 + 表格 + 完整出处 + 自足引用。

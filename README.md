@@ -18,7 +18,7 @@
 | 你想做的事 | 目录 |
 |---|---|
 | 从需求文档写测试用例资产 | `test-case-authoring/` |
-| 送独立专家评审并生成无泄漏材料包 | `expert-review-handoff/` |
+| 校验新产出的 skill 是否够格 | `skill-quality-contract/` |
 | 对结论 / 方案做独立挑刺复核 | `adversarial-review/` |
 | 改完东西后低成本验证是否生效、有没有破坏 | `change-verification/` |
 | 给结论分级、先读后断、判断何时停止追查 | `evidence-discipline/` |

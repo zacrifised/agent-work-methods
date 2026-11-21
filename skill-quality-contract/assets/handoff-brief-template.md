@@ -1,7 +1,7 @@
 # 专家评审材料包（评审一个新产出的 skill）
 
 > 建立日期：<DATE>
-> 用途：新开**无上下文会话** → 召唤专家 → `@` 本文件 → 加载 skill `expert-review-handoff`。
+> 用途：新开**无上下文会话** → 召唤专家 → `@` 本文件 → 加载 skill `skill-quality-contract`。
 > 审核对象见第 3 节；两组判据见第 2 节。
 > **审核方加载 skill 后会自动读 `<PROMPT_PATH>`，无需复制任何 prompt。**
 > 本文件是本次任务现生成的产物，不是常驻资产；换被评 skill 就重跑脚本换 `--root`。
@@ -11,7 +11,7 @@
 1. 新建任务（干净工作空间）→ 召唤专家。
 2. 输入框 `@` 引用本文件：`<BRIEF_PATH>`。
 3. 发送交接指令（一行）：
-   「加载 skill `expert-review-handoff`，按 `<PROMPT_PATH>` 执行；材料包已 `@`。」
+   「加载 skill `skill-quality-contract`，按 `<PROMPT_PATH>` 执行；材料包已 `@`。」
    若专家会话已启用该 skill，只 `@` 本文件即可。
    ⚠ **召唤 ≠ 提交任务**，不发这一句不会开始。
 
