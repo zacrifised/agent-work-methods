@@ -90,7 +90,7 @@ FAULTS = [
     ("G8b", "G8：模板加相对路径", [(TPL, '## 1. 三步用法', '## 1. 三步用法\n\n- `./relative/path`')]),
     ("G9a", "G9：模板删端到端样例整节", [
         (TPL, '## 6. 端到端样例\n\n'
-              '`产出 skill → 生成材料包 → 召唤专家 → 裁决回流`（`scenario-routing.md` §4）。\n'
+              '`产出 skill → 生成材料包 → 独立复核 → 裁决回流`（`scenario-routing.md` §4）。\n'
               '裁决回流：标二级输入、只裁分歧、给选项与出处；未召唤如实写「专家审未执行」。\n', '')]),
     ("G9b", "G9：禁用 --apply 写盘", [
         (BH, '    io.open(a.out, "w", encoding="utf-8").write(rendered)',

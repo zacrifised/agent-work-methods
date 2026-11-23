@@ -247,7 +247,7 @@ def main():
                     "门禁表行=%d / prompt标题行=%d" % (gate_rows, prompt_rows)))
 
     # ---- G9 端到端：四段 + 真实 --apply 产物含三段可验内容 ----
-    four = all(k in template for k in ("生成材料包", "召唤专家", "裁决回流", "产出 skill"))
+    four = all(k in template for k in ("生成材料包", "独立复核", "裁决回流", "产出 skill"))
     with tempfile.TemporaryDirectory() as td:
         out9 = os.path.join(td, "e2e.md")
         r9 = run(["--root", ROOT, "--skill-name", "e2e", "--out", out9, "--apply"])

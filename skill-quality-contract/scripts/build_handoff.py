@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""生成「产出工作相关 skill → 专家评审」材料包（默认 dry-run）。
+"""生成独立复核材料包（默认 dry-run）。
 
 用法（占位符示例）：
   python build_handoff.py --root <SKILL_DIR> [--root <SKILL_DIR2>] \
@@ -30,16 +30,35 @@ EXPECTED_PLACEHOLDERS = (
     "<WORK_RELATED>", "<EVIDENCE_PATHS>",
 )
 
-# 两个外部验证脚本：环境变量优先；未设时用产出方本机默认路径。
-# 跨机交接时设置 SKILL_CONTRACT_VALIDATOR / SKILL_OFFICIAL_VALIDATOR 覆盖。
+# 两个外部验证脚本路径由环境变量注入；未设置时按当前用户目录推断。
+# 跨机使用时设置 SKILL_CONTRACT_VALIDATOR / SKILL_OFFICIAL_VALIDATOR 覆盖。
 CONTRACT_VALIDATOR = os.environ.get(
     "SKILL_CONTRACT_VALIDATOR",
-    r"C:\Users\SSS\.workbuddy\scripts\validate_skill_contract.py")
-OFFICIAL_VALIDATOR = os.environ.get(
-    "SKILL_OFFICIAL_VALIDATOR",
-    os.path.join(
-        r"D:\Program Files\WorkBuddy\resources\app.asar.unpacked\resources\plugins",
-        "workbuddy-builtin", "skills", "skill-creator", "scripts", "quick_validate.py"))
+    os.path.join(os.path.expanduser("~"), ".workbuddy", "scripts",
+                 "validate_skill_contract.py"))
+def _default_official_validator():
+    base = os.path.join(os.path.expanduser("~"), ".workbuddy", "plugins", "cache",
+                        "workbuddy-builtin")
+    if os.path.isdir(base):
+        for name in sorted(os.listdir(base)):
+            if name.startswith("skill-skill-creator"):
+                root = os.path.join(base, name)
+                for sub in ("", *sorted(os.listdir(root))):
+                    cand = os.path.join(root, sub, "scripts", "quick_validate.py")
+                    if os.path.isfile(cand):
+                        return cand
+    return ""
+
+
+OFFICIAL_VALIDATOR = os.environ.get("SKILL_OFFICIAL_VALIDATOR", _default_official_validator())
+
+
+def require_validators():
+    missing = [p for p in (CONTRACT_VALIDATOR, OFFICIAL_VALIDATOR) if not os.path.isfile(p)]
+    if missing:
+        raise SystemExit(
+            "验证脚本不存在：" + ", ".join(missing) +
+            "。请设置 SKILL_CONTRACT_VALIDATOR / SKILL_OFFICIAL_VALIDATOR 指向实际路径。")
 
 
 def evidence_paths(a):
@@ -65,7 +84,7 @@ def work_related_line(roots):
             cat = m.group(1).strip() if m else ""
         parts.append("%s(category=%s)" % (os.path.basename(os.path.abspath(p)),
                                           cat or "未标注"))
-    return "工作相关 = 是，依据 = " + "; ".join(parts)
+    return "用途分类 = 通用，依据 = " + "; ".join(parts)
 
 # G5 真源：5 类答案侧禁止项，自动写进材料包第 4 节
 FORBIDDEN_CLASSES = (
@@ -167,7 +186,8 @@ def render(template, a):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="生成单场景专家评审材料包 + 门禁自检")
+    require_validators()
+    ap = argparse.ArgumentParser(description="生成单场景独立复核材料包 + 门禁自检")
     ap.add_argument("--root", action="append", default=[],
                     help="被评 skill 目录的完整路径，可重复（G4 必填）")
     ap.add_argument("--skill-name", default="", help="被评 skill 名；多 root 未给时列出各目录名")

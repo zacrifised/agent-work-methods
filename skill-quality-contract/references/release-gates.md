@@ -1,6 +1,6 @@
 ---
 doc_type: release_gate_spec
-applies_to: "产出工作相关 skill 时的专家评审"
+applies_to: "skill 质量门禁与独立复核"
 gate_semantics: "逐项二值通过；全过才放行；分数仅诊断输出，不作启用开关"
 score_role: diagnostic_only
 version: 5

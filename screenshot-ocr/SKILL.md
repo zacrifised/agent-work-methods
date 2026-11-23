@@ -1,6 +1,6 @@
 ---
 name: screenshot-ocr
-description: "Chinese OCR with measurable accuracy guarantees for screenshots and scans. Use when OCR output feeds downstream work, when accuracy must be quantified, or for low-tolerance documents (PRD, contracts, acceptance criteria, test cases). Covers model selection, heterogeneous-engine disagreement triage, glyph reconfirmation, and blind semantic proofreading. Trigger: CER / OCR 选型 / 截图文字提取 / OCR 错别字校对 / 准确率评估."
+description: "Text OCR with measurable accuracy guarantees for screenshots and scans. Use when OCR output feeds downstream work, when accuracy must be quantified, or for low-tolerance documents (PRD, contracts, acceptance criteria, test cases). Covers model selection, heterogeneous-engine disagreement triage, glyph reconfirmation, and blind semantic proofreading. Trigger: CER / OCR 选型 / 截图文字提取 / OCR 错别字校对 / 准确率评估."
 agent_created: true
 version: 1.0
 category: qa
@@ -9,9 +9,9 @@ dependencies: "python>=3.9; see README.md and references/model-selection.md for 
 ---
 # 截图 OCR 准确率保障
 ## 范围
-覆盖：从截图 / 扫描件 / 界面截图提取中文文本，并给出可复核的准确率口径与残余错误清单。
+覆盖：从截图 / 扫描件 / 界面截图提取文本，并给出可复核的准确率口径与残余错误清单。
 不覆盖：原始文本已可得时的"文本提取"（直接取原始文本，准确率构造性 100%）；
-非中文 OCR；图片内容理解与语义摘要。
+图片内容理解与语义摘要。
 ## 完成判据
 - 已先判断输入是否为电子文本渲染；是则取原始文本后跳过后面全部步骤
 - 低容错 / 关键文本用 server 级模型，未降配、未开多进程
